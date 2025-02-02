@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="wQ9Kyb" name="Folder" projectType="audioplug" useAppConfig="0"
+              addUsingNamespaceToJuceHeader="1" jucerFormatVersion="1" pluginFormats="buildVST3"
+              companyWebsite="org.eu.sout.audio.folder" pluginManufacturer="Sout Audio"
+              pluginVST3Category="Distortion" pluginName="SA Folder" bundleIdentifier="org.eu.sout.audio.folder"
+              aaxIdentifier="org.eu.sout.audio.folder">
+  <MAINGROUP id="OmbdHU" name="Folder">
+    <GROUP id="{1A534B10-893D-E5C1-6B81-EC3CC3ADC414}" name="Source">
+      <FILE id="Qyg3qK" name="SoutLookAndFeel.cpp" compile="1" resource="0"
+            file="Source/SoutLookAndFeel.cpp"/>
+      <GROUP id="{76B7B2DB-FC0B-1D73-24E2-F8C714FD0008}" name="Resources">
+        <FILE id="lrRjrR" name="FOLDER_GUI.png" compile="0" resource="1" file="../../../Downloads/FOLDER_GUI.png"/>
+      </GROUP>
+      <GROUP id="{22FB95EC-AB8A-4B79-8E68-C441F2FB8E36}" name="Components">
+        <FILE id="FYKPIn" name="HorizontalMeter.h" compile="0" resource="0"
+              file="Source/Components/HorizontalMeter.h"/>
+      </GROUP>
+      <FILE id="yYRhog" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="ejKUcw" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+      <FILE id="k7mG7J" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+      <FILE id="Uh3UyP" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"
+            useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+  </MODULES>
+  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
+  <EXPORTFORMATS>
+    <VS2022 targetFolder="Builds/VisualStudio2022">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="SoutWaverTest"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="SoutWaverTest"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="D:/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="D:/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="D:/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="D:/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="D:/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="D:/JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="D:/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="D:/JUCE/modules"/>
+        <MODULEPATH id="juce_dsp" path="D:/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="D:/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="D:/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="D:/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="D:/JUCE/modules"/>
+      </MODULEPATHS>
+    </VS2022>
+  </EXPORTFORMATS>
+</JUCERPROJECT>
