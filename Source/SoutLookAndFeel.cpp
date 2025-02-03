@@ -33,10 +33,10 @@ public:
         // 创建长方形Thumb路径（从中心向外延伸）
         juce::Path thumb;
         thumb.addRectangle(
-            -thumbWidth * 0.5f,   // X居中
-            -thumbOffset,         // 起点位置（中心上方偏移）
+            -thumbWidth * 0.5f,         // X居中
+            -thumbOffset,               // 起点位置（中心上方偏移）
             thumbWidth,
-            thumbLength           // 向边缘延伸的长度
+            thumbLength             // 向边缘延伸的长度
         );
 
         // 设置颜色（增加透明度）

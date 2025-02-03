@@ -15,6 +15,7 @@ SoutWaverTestAudioProcessorEditor::SoutWaverTestAudioProcessorEditor(SoutWaverTe
 	: AudioProcessorEditor(&p), audioProcessor(p)
 {
 	backgroundImage = ImageCache::getFromMemory(BinaryData::FOLDER_GUI_png, BinaryData::FOLDER_GUI_pngSize);
+	setSize(720 * guiScaleFactor, 1000 * guiScaleFactor);
 
 	// 唉好不容易写的分贝条条结果用不上
 	// addAndMakeVisible(horizontalMeterLeft);
@@ -45,11 +46,42 @@ SoutWaverTestAudioProcessorEditor::SoutWaverTestAudioProcessorEditor(SoutWaverTe
 	mixKnob.setLookAndFeel(&sliderLookAndFeel);
 	mixSliderAttachment = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvts, "Mix", mixKnob);
 
+	auto distortionKnobSize = 384.0f * guiScaleFactor;
+	auto distortionKnobPosX = getWidth() / 2.0f - distortionKnobSize / 2.0f;
+	auto distortionKnobPosY = 431.0f * guiScaleFactor - 173.0f / 2.0f;
+	distortionKnob.setBounds(distortionKnobPosX, distortionKnobPosY,
+		distortionKnobSize, distortionKnobSize);
+	originalDistortionBounds = distortionKnob.getBounds();
+
+	auto outputKnobSize = 200.0f * guiScaleFactor;
+	auto outputKnobPosX = 183.0f * guiScaleFactor - outputKnobSize / 2.0f - 7.0f * guiScaleFactor;
+	auto outputKnobPosY = 802.0f * guiScaleFactor - outputKnobSize / 2.0f;
+	outputGainKnob.setBounds(outputKnobPosX, outputKnobPosY,
+		outputKnobSize, outputKnobSize);
+	originalOutputGainBounds = outputGainKnob.getBounds();
+
+	auto mixKnobSize = 200.0f * guiScaleFactor;
+	auto mixKnobPosX = 566.0f * guiScaleFactor - mixKnobSize / 2.0f - 18.0f * guiScaleFactor;
+	auto mixKnobPosY = 800.0f * guiScaleFactor - mixKnobSize / 2.0f;
+	mixKnob.setBounds(mixKnobPosX, mixKnobPosY,
+		mixKnobSize, mixKnobSize);
+	originalMixBounds = mixKnob.getBounds();
+
 	addAndMakeVisible(distortionKnob);
 	addAndMakeVisible(outputGainKnob);
 	addAndMakeVisible(mixKnob);
 
-	setSize(720 * guiScaleFactor, 1000 * guiScaleFactor);
+	menu.addItem(1, "50%", true, guiScaleFactor == 0.5f);
+	menu.addItem(2, "100%", true, guiScaleFactor == 1.0f);
+	menu.addItem(3, "150%", true, guiScaleFactor == 1.5f);
+	menu.addItem(4, "200%", true, guiScaleFactor == 2.0f);
+	menu.addSeparator();
+	menu.addItem(5, "Custom Scale...");
+
+#if JUCE_VERSION >= 0x60000
+	setResizable(true, true);
+	getConstrainer()->setFixedAspectRatio(720.0f / 1000.0f);
+#endif
 
 	startTimerHz(24);
 }
@@ -86,22 +118,21 @@ void SoutWaverTestAudioProcessorEditor::resized()
 	horizontalMeterLeft.setBounds(getWidth() / 2 - 200, getHeight() - 40, 200, 30);
 	horizontalMeterRight.setBounds(getWidth() / 2 - 200, getHeight() - 50, 200, 30);
 
-	//gainSlider.setBounds(getWidth() / 2 - 100, getHeight() - 50, 200, 100);
-	auto distortionKnobSize = 384.0f * guiScaleFactor;
-	auto distortionKnobPosX = getWidth() / 2.0f - distortionKnobSize / 2.0f;
-	auto distortionKnobPosY = 431.0f * guiScaleFactor - 173.0f / 2.0f;
-	distortionKnob.setBounds(distortionKnobPosX, distortionKnobPosY,
-		distortionKnobSize, distortionKnobSize);
+	auto bounds = this->getBounds();
+	auto windowWidth = bounds.getWidth();
+	auto originalHeight = 720.0f * guiScaleFactor;
+	auto originalWidth = 1000.0f * guiScaleFactor;
+	auto scaleFactor = windowWidth / 360.f;
 
-	auto outputKnobSize = 200.0f * guiScaleFactor;
-	auto outputKnobPosX = 183.0f * guiScaleFactor - outputKnobSize / 2.0f - 7.0f * guiScaleFactor;
-	auto outputKnobPosY = 802.0f * guiScaleFactor - outputKnobSize / 2.0f;
-	outputGainKnob.setBounds(outputKnobPosX, outputKnobPosY,
-		outputKnobSize, outputKnobSize);
+	distortionKnob.setBounds(
+		originalDistortionBounds.getX() * scaleFactor, originalDistortionBounds.getY() * scaleFactor,
+		384.0f * guiScaleFactor * scaleFactor, 384.0f * guiScaleFactor * scaleFactor);
 
-	auto mixKnobSize = 200.0f * guiScaleFactor;
-	auto mixKnobPosX = 566.0f * guiScaleFactor - mixKnobSize / 2.0f - 18.0f * guiScaleFactor;
-	auto mixKnobPosY = 800.0f * guiScaleFactor - mixKnobSize / 2.0f;
-	mixKnob.setBounds(mixKnobPosX, mixKnobPosY,
-		mixKnobSize, mixKnobSize);
+	outputGainKnob.setBounds(
+		originalOutputGainBounds.getX() * scaleFactor, originalOutputGainBounds.getY() * scaleFactor,
+		200.f * guiScaleFactor * scaleFactor, 200.f * guiScaleFactor * scaleFactor);
+
+	mixKnob.setBounds(
+		originalMixBounds.getX() * scaleFactor, originalMixBounds.getY() * scaleFactor,
+		200.f * guiScaleFactor * scaleFactor, 200.f * guiScaleFactor * scaleFactor);
 }

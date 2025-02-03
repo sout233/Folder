@@ -41,6 +41,9 @@ private:
 	std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> distortionSliderAttachment;
 	std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> outputGainSliderAttachment;
 	std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> mixSliderAttachment;
+	juce::Rectangle<int> originalDistortionBounds, originalOutputGainBounds, originalMixBounds;
+
+	PopupMenu menu;
 
 	float guiScaleFactor = 0.5f;
 
