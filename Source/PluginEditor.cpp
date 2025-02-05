@@ -46,6 +46,7 @@ SoutWaverTestAudioProcessorEditor::SoutWaverTestAudioProcessorEditor(SoutWaverTe
 	mixKnob.setLookAndFeel(&sliderLookAndFeel);
 	mixSliderAttachment = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvts, "Mix", mixKnob);
 
+	// TODO: 删掉这依托大粪
 	auto distortionKnobSize = 384.0f * guiScaleFactor;
 	auto distortionKnobPosX = getWidth() / 2.0f - distortionKnobSize / 2.0f;
 	auto distortionKnobPosY = 431.0f * guiScaleFactor - 173.0f / 2.0f;

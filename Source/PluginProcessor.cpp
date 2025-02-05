@@ -195,6 +195,7 @@ void SoutWaverTestAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer,
 	// 共振+滤波 声音跟放屁一样动听
 	juce::dsp::AudioBlock<float> block(buffer);
 	juce::dsp::ProcessContextReplacing<float> context(block);
+	// 不太清楚是否有用
 	resonator.process(context);
 
 	// 输出衰减
